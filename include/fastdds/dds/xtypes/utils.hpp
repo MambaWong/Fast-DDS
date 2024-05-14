@@ -20,9 +20,11 @@
 #define FASTDDS_DDS_XTYPES_UTILS_HPP
 
 #include <iostream>
+#include <string>
 
 #include <fastdds/dds/core/ReturnCode.hpp>
 #include <fastdds/dds/xtypes/dynamic_types/DynamicData.hpp>
+#include <fastdds/dds/xtypes/dynamic_types/DynamicType.hpp>
 
 namespace eprosima {
 namespace fastdds {
@@ -45,6 +47,10 @@ ReturnCode_t json_serialize(
         const DynamicData::_ref_type& data,
         std::ostream& output,
         DynamicDataJsonFormat format) noexcept;
+        
+// TODO
+std::string generate_idl_schema(
+        const traits<DynamicType>::ref_type& dynamic_type);
 
 } // dds
 } // fastdds
