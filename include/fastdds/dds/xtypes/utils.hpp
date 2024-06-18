@@ -47,11 +47,16 @@ ReturnCode_t json_serialize(
         const DynamicData::_ref_type& data,
         std::ostream& output,
         DynamicDataJsonFormat format) noexcept;
-        
-// TODO
+
+/**
+ * @brief Serializes a DynamicType into an IDL schema.
+ *
+ * @param [in] dynamic_type The DynamicType to serialize.
+ * @param [out] output The IDL schema.
+ */
 ReturnCode_t idl_serialize(
         const traits<DynamicType>::ref_type& dynamic_type,
-        std::string& idl_schema) noexcept;
+        std::string& output) noexcept;
 
 } // dds
 } // fastdds
