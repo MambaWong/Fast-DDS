@@ -68,6 +68,7 @@ Forthcoming
 * New `DomainParticipantExtendedQos` that includes both `DomainId` and `DomainParticipantQos` (extends `DomainParticipantFactory` API).
 * Make Blackbox tests not include any private API.
 * Remove all the private API include from Blackbox tests.
+* New `idl_serialize` method to convert a `DynamicType` to an IDL string.
 
 Version 2.14.0
 --------------
