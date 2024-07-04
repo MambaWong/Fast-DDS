@@ -1,7 +1,88 @@
 Forthcoming
 -----------
 
+<<<<<<< HEAD
 * Added new `flow_controller_descriptor_list` XML configuration.
+=======
+* Rename project to `fastdds`.
+* Rename environment variable to `FASTDDS_DEFAULT_PROFILES_FILE` and rename default XML profiles file to `FASTDDS_DEFAULT_PROFILES`.
+* Remove API marked as deprecated.
+* Removed deprecated FastRTPS API tests.
+* Removed no longer supported `FASTRTPS_API_TESTS` CMake options.
+* RTPS layer APIs refactor:
+  * RTPSReader, ReaderListener, ReaderAttributes:
+    * Several methods that were meant for internal use have been removed from public API
+    * All public methods now have `snake_case` names
+    * All public attributes now have `snake_case` names
+  * RTPSWriter, WriterHistory:
+    * The responsibility of managing both the `CacheChange` and `Payload` pools has been moved to the `WriterHistory`.
+* Public API that is no longer public:
+  * XML Parser API no longer public.
+  * ParticipantAttributes
+  * ReplierAttributes
+  * RequesterAttributes
+  * PublisherAttributes
+  * SubscriberAttributes
+  * All discovery implementation related API
+  * ProxyPool
+  * Semaphore
+  * MessageReceiver
+  * BuiltinProtocols
+  * Liveliness implementation related API
+  * shared_mutex
+  * StringMatching
+  * TimeConversion
+  * TypeLookupService
+  * DBQueue
+  * UnitsParser
+  * ReaderLocator
+  * ReaderProxy
+  * ChangeForReader
+  * ServerAttributes
+* Public API headers .h have been renamed to .hpp
+* Added create participant methods that use environment XML profile for participant configuration.
+* New TypeObjectRegistry class to register/query TypeObjects/TypeIdentifiers.
+* New TypeObjectUtils class providing API to build and register TypeObjects/TypeIdentifiers.
+* Refactor Dynamic Language Binding API according to OMG XTypes v1.3 specification.
+* Refactor ReturnCode complying with OMG DDS specification.
+* Calling `DataReader::return_loan` returns `ReturnCode_t::RETCODE_OK` both for empty sequences and for sequences that were not loaned.
+* Refactor examples:
+  * Hello world example with wait-sets and environment XML profiles.
+  * Configuration example that condenses multiple QoS examples. Multiple configurations allowed through argument parsing.
+  * Custom payload pool example that uses a user-defined payload pool instead of the default
+  * X-Types example with dynamic type discovery and Hello world example compatibility.
+  * Custom Content filter example
+  * Delivery mechanisms example with SHM, UDP, TCP, data-sharing and intra-process mechanisms.
+  * Discovery server example.
+* Removed `TypeConsistencyQos` from DataReader, and included `TypeConsistencyEnforcementQosPolicy` and `DataRepresentationQosPolicy`
+* Added new `flow_controller_descriptor_list` XML configuration, remove `ThroughtputController`.
+* Migrate `#define`s within `BuiltinEndpoints.hpp` to namespaced `constexpr` variables.
+* Make `StdoutErrConsumer` the default log consumer.
+* IPayloadPool refactor:
+  * `payload_owner` moved from `CacheChange_t` to `SerializedPayload_t`.
+  * `SerializedPayload_t` copies are now forbidden.
+  * Refactor of `get_payload` methods.
+* Use `PID_DOMAIN_ID` during PDP.
+* Creation of RTPS messages refactor:
+  * New Gather-send method is now used by default, avoiding an extra copy during the creation of the RTPS message.
+  * New attribute in `SendBuffersAllocationAttributes` to configure allocation of `NetworkBuffer` vector.
+  * `SenderResource` and Transport APIs now receive a collection of `NetworkBuffer` on their `send` method.
+* Migrate fastrtps namespace to fastdds
+* Migrate fastrtps `ResourceManagement` API from `rtps/resources` to `rtps/attributes`.
+* `const` qualify all data related inputs in DataWriter APIs
+* New `DomainParticipantExtendedQos` that includes both `DomainId` and `DomainParticipantQos` (extends `DomainParticipantFactory` API).
+* Make Blackbox tests not include any private API.
+* Remove all the private API include from Blackbox tests.
+* Discovery Server refactor:
+  * Clients and Servers no longer need a known GUID to connect between them.
+  * Servers are now configured specifying a LocatorList, instead of a RemoteServerAttributes list.
+  * Servers connect through a mesh topology. For a new server to join the topology, it must be connected to any server in it.
+  * Servers only redirect discovery information of their direct clients.
+  * Remote Discovery servers connection list can now be updated and modified at runtime without restrictions.
+  * Fast DDS CLI has been updated to allow the creation of servers without GUID.
+* Refactor in XML Parser to return DynamicTypeBuilder instead of DynamicType
+* Setting vendor_id in the received CacheChange_t for Data and DataFrag.
+>>>>>>> 6c051ae17 (Setting vendor_id on received CacheChange_t (#4978))
 
 Version 2.14.0
 --------------
