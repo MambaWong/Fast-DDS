@@ -68,6 +68,7 @@ Forthcoming
 * New `DomainParticipantExtendedQos` that includes both `DomainId` and `DomainParticipantQos` (extends `DomainParticipantFactory` API).
 * Make Blackbox tests not include any private API.
 * Remove all the private API include from Blackbox tests.
+* DynamicData to JSON serializer
 
 Version 2.14.0
 --------------
