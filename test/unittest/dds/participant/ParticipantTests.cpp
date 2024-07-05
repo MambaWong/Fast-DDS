@@ -2540,10 +2540,12 @@ public:
 
     void on_participant_discovery(
             eprosima::fastdds::dds::DomainParticipant*,
-            eprosima::fastdds::rtps::ParticipantDiscoveryInfo&&,
+            eprosima::fastdds::rtps::PARTICIPANT_DISCOVERY_STATUS status,
+            const eprosima::fastdds::rtps::ParticipantProxyData&&,
             bool& should_be_ignored) override
     {
         static_cast<void>(should_be_ignored);
+        static_cast<void>(status);
         try
         {
             promise_.set_value();
