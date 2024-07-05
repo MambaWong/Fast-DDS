@@ -36,6 +36,16 @@ enum class DynamicDataJsonFormat
     EPROSIMA,
 };
 
+/**
+ * @brief Serializes a DynamicType into its IDL representation.
+ *
+ * @param [in] dynamic_type The DynamicType to serialize.
+ * @param [in,out] output The IDL representation.
+ */
+ReturnCode_t idl_serialize(
+        const DynamicType::_ref_type& dynamic_type,
+        std::ostream& output) noexcept;
+
 /*!
  * Serializes a @ref DynamicData into a JSON object, which is then dumped into an \c std::ostream.
  * @param[in] data @ref DynamicData reference to be serialized.
@@ -47,16 +57,6 @@ ReturnCode_t json_serialize(
         const DynamicData::_ref_type& data,
         std::ostream& output,
         DynamicDataJsonFormat format) noexcept;
-
-/**
- * @brief Serializes a DynamicType into an IDL schema.
- *
- * @param [in] dynamic_type The DynamicType to serialize.
- * @param [out] output The IDL schema.
- */
-ReturnCode_t idl_serialize(
-        const traits<DynamicType>::ref_type& dynamic_type,
-        std::string& output) noexcept;
 
 } // dds
 } // fastdds
