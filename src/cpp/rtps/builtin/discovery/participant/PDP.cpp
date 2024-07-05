@@ -531,7 +531,7 @@ void PDP::disable()
     for (ParticipantProxyData* pdata : participants)
     {
         actions_on_remote_participant_removed(pdata, pdata->m_guid,
-                ParticipantDiscoveryInfo::PARTICIPANT_DISCOVERY_STATUS::REMOVED_PARTICIPANT, nullptr);
+                PARTICIPANT_DISCOVERY_STATUS::REMOVED_PARTICIPANT, nullptr);
     }
 }
 
@@ -1226,7 +1226,7 @@ void PDP::set_proxy_observer(
 
 bool PDP::remove_remote_participant(
         const GUID_t& partGUID,
-        ParticipantDiscoveryInfo::PARTICIPANT_DISCOVERY_STATUS reason)
+        PARTICIPANT_DISCOVERY_STATUS reason)
 {
     if (partGUID == getLocalParticipantProxyData()->m_guid)
     {
@@ -1265,7 +1265,7 @@ bool PDP::remove_remote_participant(
 void PDP::actions_on_remote_participant_removed(
         ParticipantProxyData* pdata,
         const GUID_t& partGUID,
-        ParticipantDiscoveryInfo::PARTICIPANT_DISCOVERY_STATUS reason,
+        PARTICIPANT_DISCOVERY_STATUS reason,
         RTPSParticipantListener* listener)
 {
     assert(nullptr != pdata);
@@ -1297,7 +1297,7 @@ void PDP::actions_on_remote_participant_removed(
             if (writer_guid != c_Guid_Unknown)
             {
                 mp_EDP->unpairWriterProxy(partGUID, writer_guid,
-                        reason == ParticipantDiscoveryInfo::PARTICIPANT_DISCOVERY_STATUS::DROPPED_PARTICIPANT);
+                        reason == PARTICIPANT_DISCOVERY_STATUS::DROPPED_PARTICIPANT);
 
                 if (listener)
                 {
@@ -1331,7 +1331,7 @@ void PDP::actions_on_remote_participant_removed(
     {
         std::lock_guard<std::mutex> lock(callback_mtx_);
         ParticipantDiscoveryInfo info(*pdata);
-        
+
         bool should_be_ignored = false;
         listener->on_participant_discovery(mp_RTPSParticipant->getUserRTPSParticipant(), reason,
                     std::move(info), should_be_ignored);

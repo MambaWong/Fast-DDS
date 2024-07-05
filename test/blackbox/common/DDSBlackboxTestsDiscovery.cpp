@@ -600,7 +600,7 @@ TEST(DDSDiscovery, ParticipantProxyPhysicalData)
             static_cast<void>(should_be_ignored);
             std::unique_lock<std::mutex> lck(*mtx_);
             if (status ==
-                    eprosima::fastdds::rtps::ParticipantDiscoveryInfo::PARTICIPANT_DISCOVERY_STATUS::DISCOVERED_PARTICIPANT)
+                    eprosima::fastdds::rtps::PARTICIPANT_DISCOVERY_STATUS::DISCOVERED_PARTICIPANT)
             {
                 static_cast<void>(participant);
                 if (nullptr != remote_participant_info)
